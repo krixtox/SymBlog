@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    {{ pageTitle }}
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+{# {{ form(formArt) }} #}
+{{ form_start(formArt) }}
+{{ form_row(formArt.title) }}
+{{ form_row(formArt.category) }}
+{{ form_row(formArt.content) }}
+{{ form_row(formArt.picture) }}
+
+<button type="submit" class="btn btn-success btn-action">
+{% if mode == true %}
+Modifier Article
+{% else %}
+Enregistrer
+{% endif %}
+</button>
+
+{{ form_end(formArt) }}
+</div>
+
+{% endblock %}

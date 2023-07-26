@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ pageTitle }}
+{% endblock %}
+
+{% block body %}
+
+    <section class="container articles">
+
+        {% if articles is not empty  %}
+
+            {% for art in articles %}
+
+                <article class="mb-3">
+                    <h2 class="mb3">
+                        {{ art.title }}
+                    </h2>
+                    <em>Créer le {{ art.createdAt | date('d/m/Y') }}</em>
+                    <div>
+                        <img src="{{ art.picture }}" alt="">
+                    </div>
+
+                        <a href="{{ path('blog_art', {id: art.id}) }}" class="btn btn-primary mt-4">
+                            Lire la Suite
+                        </a>
+                    </article>
+
+                {% endfor %}
+            {% endif %}
+
+        </section>
+    {% endblock %}
+    

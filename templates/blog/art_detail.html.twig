@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    BlogSym!   
+        
+    
+{% endblock %}
+{% block body %}
+    <section class="container articles">
+        <article class="mb-4">
+            <h2 class="mb-4">
+                {{ article.title }}
+            </h2>
+            <em>
+                Créer le: {{ article.createdAt | date('d/m/Y') }} 
+            </em>
+            <em>
+                dans la Categorie {{ article.category.name }} 
+            </em>
+            <div class="mt-4">
+                <img src="{{ article.picture }}" alt=""></div>
+                <div class="mt-4">
+                    {{ article.content }}
+                </div>
+                <a href="{{ path('blog_all') }}" class="btn btn-primary btn-action mt-4">
+                    Retour                                 
+                </a>
+                <a href="{{ path('blog_edit', {'id': article.id}) }}" class="btn btn-warning btn-action mt-4">
+                    Modifier le Article                            
+                </a>
+                <a href="#">
+                    Ajouter un Commentaire                              
+                </a>
+            </article>
+            <div class="comments">
+                <h3>
+                    Commentaires:
+                                    
+                </h3>
+                {% for comment in article.comments %}
+                    <div class="comment">
+                        <em>
+                            {{ comment.createdAt | date('d/m/Y') }}
+                            by 
+                            {{ comment.author }}
+                        </em>
+                        <p>
+                            {{ comment.content }}
+                        </p>
+                    </div>
+                {% else %}
+                    <p>
+                        Pas des commentaires pour l'instant.
+                                            
+                    </p>
+                {% endfor %}
+            </div>
+        </section>
+    {% endblock %}
+    
